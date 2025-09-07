@@ -30,7 +30,7 @@ class ErrorBoundary extends React.Component {
             refreshing the page.
           </p>
 
-          {import.meta.env.NODE_ENV === "development" && this.state.error && (
+          {import.meta.env.VITE_NODE_ENV === "development" && this.state.error && (
             <div className="text-left max-w-2xl bg-neutral-900 p-4 rounded-md border border-red-400 mb-4 overflow-auto max-h-64 w-full">
               <p className="text-red-400 font-semibold mb-2">Error Details:</p>
               <pre className="text-sm whitespace-pre-wrap break-all text-red-200">

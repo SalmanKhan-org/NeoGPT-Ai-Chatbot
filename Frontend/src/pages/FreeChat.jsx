@@ -129,12 +129,13 @@ const FreeChat = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/v1/free-chat`,
+        `/api/v1/free-chat`,
         formData,
         {
           headers: {
-            "Content-Type": "application/form-data",
+            "Content-Type": "multipart/form-data",
           },
+          withCredentials: true,
         }
       );
       if (response.data.success) {

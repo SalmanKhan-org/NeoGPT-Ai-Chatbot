@@ -6,7 +6,7 @@ const connectDB = require('./config/db.js');
 const cors = require('cors');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // CORS middleware configuration
 app.use(cors({

@@ -1,0 +1,38 @@
+
+
+/* If you plan to use a tailwind.config.js, point to it here (path is relative to THIS file) */
+@config "../tailwind.config.js";
+
+/* Load Tailwind */
+@import "tailwindcss";
+
+*{
+  font-family:Roboto , 'Open Sans', 'Helvetica', 'sans-serif';
+}
+body{
+  margin: 0;
+  padding: 0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #171717; /* Darker background for the track */
+  border-radius: 9999px; /* Rounded corners */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #38393b; /* Light gray color for the thumb */
+  border-radius: 9999px; /* Rounded corners */
+  height: 30px; /* Increase the height of the thumb */
+  transition: background-color 0.3s ease; /* Smooth color transition */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #6b7280; /* Darker gray when hovered */
+}
+
+

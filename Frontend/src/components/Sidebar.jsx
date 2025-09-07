@@ -55,18 +55,18 @@ export const Sidebar = () => {
   
 
   // Responsive sizing
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setIsSidebarOpen(true);
-      } else {
-        setIsSidebarOpen(false);
-      }
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [setIsSidebarOpen]);
+useEffect(() => {
+  const handleResize = () => {
+    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+    setIsSidebarOpen(isDesktop); // only change on actual desktop breakpoint
+  };
+
+  window.addEventListener("resize", handleResize);
+  handleResize(); // run once at mount
+
+  return () => window.removeEventListener("resize", handleResize);
+}, [setIsSidebarOpen]);
+
 
   // Close sidebar on clicking outside (for mobile/medium sizes)
   useEffect(() => {
@@ -162,6 +162,7 @@ export const Sidebar = () => {
           <div className="flex items-center w-full bg-neutral-900 rounded-full pl-2">
             <Tooltip
               label={"Close"}
+              position="bottom"
               children={
                 <button
                   onClick={() => {
@@ -177,9 +178,11 @@ export const Sidebar = () => {
             />
             <Tooltip
               label={"Search"}
+              position="bottom"
               children={
                 <input
                   autoFocus
+                  dir="ltr"
                   type="text"
                   placeholder="Search chats..."
                   value={searchTerm}

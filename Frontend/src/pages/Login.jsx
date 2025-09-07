@@ -29,7 +29,7 @@ const Login = () => {
     const handleLogin = async () => {
         try {
           const response = await axios.post(
-            `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/login`,
+            `/api/v1/users/login`,
             data
           );
           if (response.data.success) {

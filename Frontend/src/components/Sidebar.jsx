@@ -35,7 +35,7 @@ export const Sidebar = () => {
   //get all threads
   const getAllThreads = async() => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/threads`, {
+      const response = await axios.get(`/api/v1/threads`, {
         headers: {
           'Authorization':`Bearer ${token}`
         }
@@ -115,7 +115,7 @@ export const Sidebar = () => {
   const fetchChats = async (id) => {
     setThreadId(id);
     try {
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/thread/${id}`, {
+      const response = await axios.get(`/api/v1/thread/${id}`, {
         headers: {
           'Authorization':`Bearer ${token}`
         }
@@ -133,7 +133,7 @@ export const Sidebar = () => {
   //delete thread
   const deleteThread = async (e, id) => {
     try {
-      const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/v1/thread/${id}`, {
+      const response = await axios.delete(`/api/v1/thread/${id}`, {
         headers: {
           'Authorization':`Bearer ${token}`
         }

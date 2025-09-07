@@ -33,7 +33,7 @@ const Signup = () => {
     const handleSubmit = async () => {
         try {
             setLoading(true);
-            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/users/register`, data );
+            const response = await axios.post(`/api/v1/users/register`, data );
             if (response.data.success) {
                 setLoading(false);
                 localStorage.setItem("token", response.data.data);

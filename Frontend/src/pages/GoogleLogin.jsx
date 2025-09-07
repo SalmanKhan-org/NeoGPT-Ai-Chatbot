@@ -14,7 +14,7 @@ const GoogleLogin = () => {
             email: googleResponse.user.email
         };
         try {
-            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/users/google-login`, values);
+            const response = await axios.post(`/api/v1/users/google-login`, values);
             if (response.data.success) {
                 localStorage.setItem("token", response.data.data);
                 toast.success(response.data.message);

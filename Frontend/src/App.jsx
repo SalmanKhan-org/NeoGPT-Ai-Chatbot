@@ -37,7 +37,7 @@ function App() {
   const fetchUserData = async () => {
     const token = localStorage.getItem("token");
     try {
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/users/me`, {
+      const response = await axios.get(`/api/v1/users/me`, {
         headers: {
           'Authorization':`Bearer ${token}`
         }

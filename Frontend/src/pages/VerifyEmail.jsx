@@ -14,7 +14,7 @@ const VerifyEmail = () => {
       const verifyEmail = async () => {
           if (token) {
               try {
-                  const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/users/verify-email?token=${token}`);
+                  const response = await axios.get(`/api/v1/users/verify-email?token=${token}`);
                   if (response.data.success) {
                       setStatus('success');
                       toast.success("Email Verified Successfully");

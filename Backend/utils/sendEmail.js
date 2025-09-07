@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 // Equivalent of: import { fileURLToPath } from 'url';
 const { fileURLToPath } = require("url");
 
-exports.sendVerificationEmail = async (user) => {
+exports.sendVerificationEmail = async (user,req) => {
   // Generate verification token
   const token = jwt.sign(
     { id: user._id, email: user.email },

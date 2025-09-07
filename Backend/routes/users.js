@@ -43,7 +43,7 @@ router.post(
         password: hashedPassword,
       });
 
-      await sendVerificationEmail(newuser);
+      await sendVerificationEmail(newuser,req);
 
       await generateToken(
         newuser,

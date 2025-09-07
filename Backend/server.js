@@ -27,7 +27,7 @@ app.use('/api/v1', chatsRoutes);
 
 // Corrected wildcard route for Express v5
 app.use(express.static(path.join(DIRNAME, "Frontend", "dist")));
-app.get("/*spat", (_, res) => {
+app.get("*", (_, res) => {
   res.sendFile(path.resolve(DIRNAME, "Frontend", "dist", "index.html"));
 });
 

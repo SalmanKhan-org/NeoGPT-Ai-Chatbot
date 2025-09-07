@@ -3,10 +3,12 @@ import { MyContext } from "../mycontext";
 import { Tooltip } from "./Tooltip";
 import { FaPlus } from "react-icons/fa6";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 export const Header = () => {
   const { isSidebarOpen, setIsSidebarOpen, userData } = useContext(MyContext);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const navigate = useNavigate();
   const dropdownRef = useRef(null);
 
   // Hook to handle clicks outside the dropdown to close it
@@ -29,7 +31,7 @@ export const Header = () => {
     const handleLogout = () => {
         try {
             localStorage.removeItem("token");
-            window.location.reload();
+            navigate("/");
             toast.success("User logged out successfully");
         } catch (error) {
             toast.error("User not logged out");

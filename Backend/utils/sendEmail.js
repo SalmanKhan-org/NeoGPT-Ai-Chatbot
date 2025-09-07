@@ -15,7 +15,10 @@ exports.sendVerificationEmail = async (user) => {
   );
 
   // Create verification link with frontend URL
-  const verificationLink = `${process.env.FRONTEND_URL}/verify-email?token=${token}`;
+ const verificationLink= `${req.protocol}://${req.get(
+   "host"
+ )}/verify-email?token=${token}`;
+
 
   // __dirname is available by default in CommonJS
   const templatePath = path.join(__dirname, "../templates/verify_email.html");

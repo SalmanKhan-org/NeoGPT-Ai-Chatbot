@@ -57,32 +57,21 @@ export const Sidebar = () => {
   // Responsive sizing
 useEffect(() => {
   const handleResize = () => {
-    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
-    setIsSidebarOpen(isDesktop); // only change on actual desktop breakpoint
+    // Skip resize behavior if search is open
+    if (isSearchOpen) return;
+
+    if (window.innerWidth >= 1024) {
+      setIsSidebarOpen(true);
+    } else {
+      setIsSidebarOpen(false);
+    }
   };
 
   window.addEventListener("resize", handleResize);
-  handleResize(); // run once at mount
-
+  handleResize();
   return () => window.removeEventListener("resize", handleResize);
-}, [setIsSidebarOpen]);
+}, [setIsSidebarOpen, isSearchOpen]);
 
-
-  // Close sidebar on clicking outside (for mobile/medium sizes)
-  useEffect(() => {
-    const handleOutsideClick = (e) => {
-      if (
-        isSidebarOpen &&
-        window.innerWidth < 1024 &&
-        sidebarRef.current &&
-        !sidebarRef.current.contains(e.target)
-      ) {
-        setIsSidebarOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleOutsideClick);
-    return () => document.removeEventListener("mousedown", handleOutsideClick);
-  }, [isSidebarOpen, setIsSidebarOpen]);
 
   const filteredThreads = allThreads.filter((thread) =>
     thread.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -181,8 +170,12 @@ useEffect(() => {
               position="bottom"
               children={
                 <input
-                  autoFocus
                   dir="ltr"
+                  inputMode="text"
+                  autoCapitalize="none"
+                  autoComplete="off"
+                  spellCheck={false}
+                  autoFocus
                   type="text"
                   placeholder="Search chats..."
                   value={searchTerm}
@@ -350,11 +343,13 @@ useEffect(() => {
             label={"User"}
             children={
               <div className="min-w-[24px] w-6 h-6 flex items-center justify-center rounded-full bg-blue-800 text-white text-sm font-semibold uppercase">
-                {userData?.username?.charAt(0)||"J"}
+                {userData?.username?.charAt(0) || "J"}
               </div>
             }
           />
-          {!isCollapsed && <span className="text-sm">{userData?.username||"John Doe"}</span>}
+          {!isCollapsed && (
+            <span className="text-sm">{userData?.username || "John Doe"}</span>
+          )}
         </div>
       </div>
     </div>
